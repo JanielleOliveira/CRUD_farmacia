@@ -5,6 +5,7 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Produto } from '../../produto/entities/produto.entity';
 
@@ -26,7 +27,10 @@ export class Categoria {
   produto: Produto[];
 
   //Campos Automáticos para data de criação de categoria
-  @IsNotEmpty()
   @CreateDateColumn({ name: 'criado_em' })
   criadoEm: Date;
+
+  //Campo automatico para data de atualização
+  @UpdateDateColumn({ name: 'atualizado_em' })
+  atualizadoEm: Date;
 }

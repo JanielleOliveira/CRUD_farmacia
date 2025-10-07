@@ -41,7 +41,6 @@ export class Produto {
   categoria: Categoria;
 
   //Campo automatico para data de atualização
-  @IsNotEmpty()
   @UpdateDateColumn({ name: 'atualizado_em' })
   atualizadoEm: Date;
 }

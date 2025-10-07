@@ -51,15 +51,11 @@ export class CategoriaService {
   }
 
   async create(categoria: Categoria): Promise<Categoria> {
-    await this.produtoService.findById(categoria.produto[0].id);
-
     return await this.categoriaRepository.save(categoria);
   }
 
   async update(categoria: Categoria): Promise<Categoria> {
     await this.findById(categoria.id);
-
-    await this.produtoService.findById(categoria.produto[0].id);
 
     return await this.categoriaRepository.save(categoria);
   }
