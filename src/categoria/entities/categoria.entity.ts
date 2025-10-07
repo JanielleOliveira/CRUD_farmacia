@@ -1,5 +1,12 @@
 import { IsNotEmpty } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Produto } from '../../produto/entities/produto.entity';
 
 @Entity({ name: 'tb_categorias' })
 export class Categoria {
@@ -13,4 +20,13 @@ export class Categoria {
   @IsNotEmpty()
   @Column({ length: 1000, nullable: false })
   descricao: string;
+
+  //Relacionamento de um para muitos
+  @OneToMany(() => Produto, (produto) => produto.categoria)
+  produto: Produto[];
+
+  //Campos Automáticos para data de criação de categoria
+  @IsNotEmpty()
+  @CreateDateColumn({ name: 'criado_em' })
+  criadoEm: Date;
 }
